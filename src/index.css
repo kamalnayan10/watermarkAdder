@@ -40,8 +40,9 @@
   justify-content: center;
   flex-flow: column;
   align-items: center;
-  border: 2px dashed var(--light);
+  border: 2px dashed var(--medium);
   border-radius: 15px;
+  color: var(--medium);
 }
 
 .drop-box:hover {
