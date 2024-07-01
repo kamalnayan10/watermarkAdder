@@ -8,7 +8,6 @@
 }
 
 * {
-  color: var(--light);
   font-family: "Poppins", sans-serif;
   padding: 0;
   margin: 0;
@@ -31,6 +30,7 @@
   text-transform: uppercase;
   text-align: center;
   position: absolute;
+  color: var(--medium);
 }
 
 .drop-box {
@@ -86,10 +86,10 @@
 .utils {
   height: 600px;
   width: 500px;
-  padding: 30px 10px;
+  padding: 0 10px;
   box-sizing: border-box;
   border-radius: 10px;
-  border: 3px solid var(--light);
+  /* border: 3px solid var(--light); */
   display: flex;
   flex-flow: column wrap;
   justify-content: flex-start;
@@ -114,6 +114,7 @@ input {
 input[type="text"] {
   padding: 10px;
   font-size: 20px;
+  border-radius: 10px;
 }
 
 input:focus {
@@ -122,4 +123,22 @@ input:focus {
 
 .btn {
   padding: 10px;
+  background-color: #fff;
+  color: var(--medium);
+  transition: 0.2s ease-in-out;
+  border-radius: 10px;
+}
+.btn:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: var(--light);
+}
+
+.footer {
+  position: absolute;
+  bottom: 30px;
+  text-align: center;
+  font-weight: 300;
+  width: 100%;
+  color: var(--medium);
 }

@@ -2,6 +2,7 @@ import Input from "./Input";
 import Image from "./Image";
 import { useState } from "react";
 import Title from "./Title";
+import Footer from "./Footer";
 
 function App() {
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -19,6 +20,7 @@ function App() {
           <Image image={URL.createObjectURL(uploadedFiles[0])} />
         )}
       </div>
+      <Footer />
     </>
   );
 }
