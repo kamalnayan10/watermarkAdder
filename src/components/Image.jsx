@@ -1,18 +1,22 @@
 import PropTypes from "prop-types";
 import Utils from "./Utils";
 
-function Image({ image, uploadedFile, setWatermarkedFile, watermarkedFile }) {
+function Image({ image, uploadedFile, setWatermarkedFile, handleRefresh }) {
   return (
     <div className="container">
       <div className="img">
         <img src={image.fileUrl} alt="uploaded image" />
       </div>
-      <Utils uploadedFile={uploadedFile} setWatermarkedFile={setWatermarkedFile} />
-      {watermarkedFile && (
+      <Utils
+        uploadedFile={uploadedFile}
+        setWatermarkedFile={setWatermarkedFile}
+        handleRefresh={handleRefresh}
+      />
+      {/* {watermarkedFile && (
         <div className="img">
           <img src={watermarkedFile.fileUrl} alt="watermarked image" />
         </div>
-      )}
+      )} */}
     </div>
   );
 }
@@ -24,4 +28,5 @@ Image.propTypes = {
   uploadedFile: PropTypes.object.isRequired,
   setWatermarkedFile: PropTypes.func.isRequired,
   watermarkedFile: PropTypes.object,
+  handleRefresh: PropTypes.func.isRequired,
 };

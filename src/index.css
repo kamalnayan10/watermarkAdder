@@ -94,7 +94,7 @@
   /* border: 3px solid var(--light); */
   display: flex;
   flex-flow: column wrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 }
 
@@ -107,13 +107,12 @@
 }
 
 input {
-  width: calc(90% + 10px);
-  /* padding: 5px; */
   border: none;
   box-sizing: border-box;
 }
 
 input[type="text"] {
+  width: calc(90% + 20px);
   padding: 10px;
   font-size: 20px;
   border-radius: 10px;
@@ -128,8 +127,24 @@ input:focus {
   background-color: #fff;
   color: var(--medium);
   transition: 0.2s ease-in-out;
+  width: 45%;
+  margin: 10px;
   border-radius: 10px;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 15px;
 }
+
+.create {
+  background-color: var(--light);
+  color: #fff;
+}
+
+.create:hover {
+  background-color: #fff !important;
+  color: var(--light) !important;
+}
+
 .btn:hover {
   cursor: pointer;
   color: #fff;

@@ -8,9 +8,14 @@ function App() {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [watermarkedFile, setWatermarkedFile] = useState(null);
 
+  function handleRefresh() {
+    setUploadedFiles([]);
+    setWatermarkedFile(null);
+  }
+
   return (
     <>
-      <Title handleRefresh={() => { setUploadedFiles([]); setWatermarkedFile(null); }} />
+      <Title handleRefresh={handleRefresh} />
       <div className="App">
         {uploadedFiles.length === 0 ? (
           <Input setUploadedFiles={setUploadedFiles} />
@@ -20,6 +25,7 @@ function App() {
             uploadedFile={uploadedFiles[0]}
             setWatermarkedFile={setWatermarkedFile}
             watermarkedFile={watermarkedFile}
+            handleRefresh={handleRefresh}
           />
         )}
       </div>
