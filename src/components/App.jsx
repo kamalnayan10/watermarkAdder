@@ -6,24 +6,20 @@ import Footer from "./Footer";
 
 function App() {
   const [uploadedFiles, setUploadedFiles] = useState([]);
-
-  function handleRefresh() {
-    setUploadedFiles([]);
-  }
+  const [watermarkedFile, setWatermarkedFile] = useState(null);
 
   return (
     <>
-      <Title handleRefresh={handleRefresh} />
+      <Title handleRefresh={() => { setUploadedFiles([]); setWatermarkedFile(null); }} />
       <div className="App">
-        {uploadedFiles.length == 0 ? (
-          <Input
-            uploadedFiles={uploadedFiles}
-            setUploadedFiles={setUploadedFiles}
-          />
+        {uploadedFiles.length === 0 ? (
+          <Input setUploadedFiles={setUploadedFiles} />
         ) : (
           <Image
-            image={URL.createObjectURL(uploadedFiles[0])}
-            handleRefresh={handleRefresh}
+            image={uploadedFiles[0]}
+            uploadedFile={uploadedFiles[0]}
+            setWatermarkedFile={setWatermarkedFile}
+            watermarkedFile={watermarkedFile}
           />
         )}
       </div>

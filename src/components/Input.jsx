@@ -4,10 +4,12 @@ import PropTypes from "prop-types";
 function Input({ setUploadedFiles }) {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
-      setUploadedFiles(acceptedFiles);
-      // upload image to be processed here
+      const file = acceptedFiles[0];
+      const fileUrl = URL.createObjectURL(file);
+      setUploadedFiles([{ file, fileUrl }]);
     },
   });
+
   return (
     <div {...getRootProps()} className="drop-box">
       <input {...getInputProps()} />
@@ -16,6 +18,7 @@ function Input({ setUploadedFiles }) {
     </div>
   );
 }
+
 export default Input;
 
 Input.propTypes = {
