@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 import Utils from "./Utils";
 
-function Image({ image }) {
+function Image({ image, handleRefresh }) {
   return (
     <div className="container">
       <div className="img">
         <img src={image} alt="uploaded image" />
       </div>
-      <Utils />
+      <Utils handleRefresh={handleRefresh} />
     </div>
   );
 }
@@ -15,5 +15,6 @@ function Image({ image }) {
 export default Image;
 
 Image.propTypes = {
-  image: PropTypes.func.isRequired,
+  image: PropTypes.string.isRequired,
+  handleRefresh: PropTypes.func.isRequired,
 };

@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;800&display=swap");
 
 :root {
-  --dark: #090909;
+  --dark: #292929;
   --primary: #1b1a55;
-  --medium: #535c91;
-  --light: #9290c3;
+  --medium: #615efc;
+  --light: #7e8ef1;
 }
 
 * {
@@ -31,6 +31,7 @@
   text-align: center;
   position: absolute;
   color: var(--medium);
+  cursor: pointer;
 }
 
 .drop-box {
@@ -42,7 +43,7 @@
   align-items: center;
   border: 2px dashed var(--medium);
   border-radius: 15px;
-  color: var(--medium);
+  color: var(--light);
 }
 
 .drop-box:hover {
@@ -98,7 +99,7 @@
 }
 
 .watermark {
-  background-color: var(--medium);
+  background-color: var(--light);
   height: 100px;
   border-radius: 10px;
   width: 45%;
@@ -141,5 +142,5 @@ input:focus {
   text-align: center;
   font-weight: 300;
   width: 100%;
-  color: var(--medium);
+  color: var(--light);
 }

@@ -7,9 +7,13 @@ import Footer from "./Footer";
 function App() {
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
+  function handleRefresh() {
+    setUploadedFiles([]);
+  }
+
   return (
     <>
-      <Title />
+      <Title handleRefresh={handleRefresh} />
       <div className="App">
         {uploadedFiles.length == 0 ? (
           <Input
@@ -17,7 +21,10 @@ function App() {
             setUploadedFiles={setUploadedFiles}
           />
         ) : (
-          <Image image={URL.createObjectURL(uploadedFiles[0])} />
+          <Image
+            image={URL.createObjectURL(uploadedFiles[0])}
+            handleRefresh={handleRefresh}
+          />
         )}
       </div>
       <Footer />
