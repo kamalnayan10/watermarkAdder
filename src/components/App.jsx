@@ -7,10 +7,22 @@ import Footer from "./Footer";
 function App() {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [watermarkedFile, setWatermarkedFile] = useState(null);
+  const [text, setText] = useState("");
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
 
   function handleRefresh() {
     setUploadedFiles([]);
     setWatermarkedFile(null);
+    setSelectedTemplate(null);
+    setText("");
+  }
+
+  function handleText(prompt) {
+    setText(prompt);
+  }
+
+  function handleTemplate(x) {
+    setSelectedTemplate(x);
   }
 
   return (
@@ -24,8 +36,10 @@ function App() {
             image={uploadedFiles[0]}
             uploadedFile={uploadedFiles[0]}
             setWatermarkedFile={setWatermarkedFile}
-            watermarkedFile={watermarkedFile}
             handleRefresh={handleRefresh}
+            handleText={handleText}
+            handleTemplate={handleTemplate}
+            text={text}
           />
         )}
       </div>

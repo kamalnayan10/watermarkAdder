@@ -1,8 +1,16 @@
+import { useRef } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import Watermark from "./Watermark";
+import Button from "./Button";
 
-function Utils({ uploadedFile, setWatermarkedFile, handleRefresh }) {
+function Utils({
+  uploadedFile,
+  setWatermarkedFile,
+  handleRefresh,
+  handleText,
+  handleTemplate,
+  text,
+}) {
   const handleCreate = async () => {
     const formData = new FormData();
     formData.append("image", uploadedFile.file);
@@ -37,30 +45,45 @@ function Utils({ uploadedFile, setWatermarkedFile, handleRefresh }) {
     }
   };
 
+  const buttonsRef = useRef([]);
+
+  const handleClick = (value, index) => {
+    // Remove 'selected' class from all buttons
+    buttonsRef.current.forEach((button) => button.classList.remove("selected"));
+    // Add 'selected' class to the clicked button
+    buttonsRef.current[index].classList.add("selected");
+  };
+
+  const handleAction = (value, index) => {
+    handleTemplate(value);
+    handleClick(value, index);
+  };
+
   return (
     <div className="utils">
       <div className="row">
-        <Watermark />
-        <Watermark />
-        <Watermark />
-        <Watermark />
-      </div>
-      <div className="row">
-        <input type="text" placeholder="text" />
+        {[0, 1, 2, 3].map((value, index) => (
+          <input
+            key={value}
+            type="button"
+            value={value}
+            className="watermark"
+            ref={(el) => (buttonsRef.current[index] = el)}
+            onClick={() => handleAction(value, index)}
+          />
+        ))}
       </div>
       <div className="row">
         <input
-          type="button"
-          value="Create"
-          className="btn create"
-          onClick={handleCreate}
+          type="text"
+          placeholder="text"
+          value={text}
+          onChange={(e) => handleText(e.target.value)}
         />
-        <input
-          type="button"
-          value="New Image"
-          className="btn"
-          onClick={handleRefresh}
-        />
+      </div>
+      <div className="row">
+        <Button clickFunc={handleCreate} extra={"create"} val={"Create"} />
+        <Button clickFunc={handleRefresh} val={"New Image"} />
       </div>
     </div>
   );
@@ -72,4 +95,7 @@ Utils.propTypes = {
   uploadedFile: PropTypes.object.isRequired,
   setWatermarkedFile: PropTypes.func.isRequired,
   handleRefresh: PropTypes.func.isRequired,
+  handleText: PropTypes.func.isRequired,
+  handleTemplate: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
 };
