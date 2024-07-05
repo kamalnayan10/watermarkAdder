@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import Button from "./Button";
@@ -13,12 +13,30 @@ function Utils({
   setWatermarkedFile,
   handleRefresh,
   handleText,
-  handleTemplate,
   text,
+  template,
+  setTemplate,
 }) {
+  const buttonsRef = useRef([]);
+
+  useEffect(() => {
+    // Select the first watermark by default if none is selected
+    if (template === 0) {
+      buttonsRef.current[0].classList.add("selected");
+      setTemplate(1); // Set the selected template (1-based index)
+    }
+  }, [template, setTemplate]);
+
   const handleCreate = async () => {
+    if (!text) {
+      alert("Please enter the watermark text.");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("image", uploadedFile.file);
+    formData.append("template", template); // Add the selected template
+    formData.append("text", text); // Add the entered text
 
     try {
       const response = await axios.post(
@@ -52,18 +70,12 @@ function Utils({
 
   const images = [watermark1, watermark2, watermark3, watermark4];
 
-  const buttonsRef = useRef([]);
-
   const handleClick = (value, index) => {
     // Remove 'selected' class from all buttons
     buttonsRef.current.forEach((button) => button.classList.remove("selected"));
     // Add 'selected' class to the clicked button
     buttonsRef.current[index].classList.add("selected");
-  };
-
-  const handleAction = (value, index) => {
-    handleTemplate(value);
-    handleClick(value, index);
+    setTemplate(value + 1); // Set the selected template (1-based index)
   };
 
   return (
@@ -75,7 +87,7 @@ function Utils({
             type="button"
             className="watermark"
             ref={(el) => (buttonsRef.current[index] = el)}
-            onClick={() => handleAction(value, index)}
+            onClick={() => handleClick(value, index)}
             style={{
               backgroundImage: `url(${images[index]})`,
               backgroundSize: "cover",
@@ -87,9 +99,10 @@ function Utils({
       <div className="row">
         <input
           type="text"
-          placeholder="text"
+          placeholder="Enter watermark text"
           value={text}
           onChange={(e) => handleText(e.target.value)}
+          required
         />
       </div>
       <div className="row">
@@ -107,6 +120,7 @@ Utils.propTypes = {
   setWatermarkedFile: PropTypes.func.isRequired,
   handleRefresh: PropTypes.func.isRequired,
   handleText: PropTypes.func.isRequired,
-  handleTemplate: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
+  template: PropTypes.number.isRequired,
+  setTemplate: PropTypes.func.isRequired,
 };

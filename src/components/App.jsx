@@ -40,6 +40,7 @@ function App() {
             handleText={handleText}
             handleTemplate={handleTemplate}
             text={text}
+            selectedTemplate={selectedTemplate}
           />
         )}
       </div>

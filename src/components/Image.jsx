@@ -9,6 +9,7 @@ function Image({
   handleText,
   handleTemplate,
   text,
+  selectedTemplate,
 }) {
   return (
     <div className="container">
@@ -22,6 +23,8 @@ function Image({
         handleText={handleText}
         handleTemplate={handleTemplate}
         text={text}
+        template={selectedTemplate}
+        setTemplate={handleTemplate}
       />
     </div>
   );
@@ -38,4 +41,5 @@ Image.propTypes = {
   handleText: PropTypes.func.isRequired,
   handleTemplate: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
+  selectedTemplate: PropTypes.number.isRequired,
 };
