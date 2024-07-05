@@ -3,6 +3,11 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import Button from "./Button";
 
+import watermark1 from "../assets/images/watermark1.png";
+import watermark2 from "../assets/images/watermark2.png";
+import watermark3 from "../assets/images/watermark3.png";
+import watermark4 from "../assets/images/watermark4.jpg";
+
 function Utils({
   uploadedFile,
   setWatermarkedFile,
@@ -45,6 +50,8 @@ function Utils({
     }
   };
 
+  const images = [watermark1, watermark2, watermark3, watermark4];
+
   const buttonsRef = useRef([]);
 
   const handleClick = (value, index) => {
@@ -66,10 +73,13 @@ function Utils({
           <input
             key={value}
             type="button"
-            value={value}
             className="watermark"
             ref={(el) => (buttonsRef.current[index] = el)}
             onClick={() => handleAction(value, index)}
+            style={{
+              backgroundImage: `url(${images[index]})`,
+              backgroundSize: "cover",
+            }}
           />
         ))}
       </div>

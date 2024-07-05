@@ -15,8 +15,8 @@
 
 .App {
   background-color: var(--dark);
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   display: flex;
   padding: 20px;
   justify-content: center;
@@ -99,7 +99,7 @@
 
 .watermark {
   background-color: var(--light);
-  height: 100px;
+  height: 150px;
   border-radius: 10px;
   width: 45%;
   margin: 10px;
