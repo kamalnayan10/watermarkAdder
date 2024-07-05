@@ -79,6 +79,7 @@ function Utils({
             style={{
               backgroundImage: `url(${images[index]})`,
               backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
           />
         ))}
